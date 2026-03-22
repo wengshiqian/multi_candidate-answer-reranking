@@ -1,0 +1,278 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="LoRA Architecture" id="lora-final">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="700">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="LoRA Fine-tuning for Medical Vision-Language Model" style="text;fontSize=13;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="350" y="10" width="500" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- ==================== PART (a): Mathematical Formulation ==================== -->
+        <mxCell id="part_a_title" value="(a) LoRA Mathematical Principle" style="text;fontSize=11;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="250" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Main Formula Box -->
+        <mxCell id="formula_box" value="" style="rounded=1;fillColor=#e6f2ff;strokeColor=#4d94ff;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="85" width="1100" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="formula_title" value="Forward Propagation:" style="text;fontSize=10;fontStyle=1;align=left;spacingLeft=15;" vertex="1" parent="1">
+          <mxGeometry x="70" y="92" width="150" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="main_formula" value="h = W₀x + (α/r)·B·A·x" style="text;fontSize=22;fontStyle=1;fontFamily=Times New Roman;align=center;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="1040" height="35" as="geometry" />
+        </mxCell>
+        
+        <!-- Decomposition Visualization -->
+        <mxCell id="decomp_area" value="" style="rounded=1;fillColor=#fff9e6;strokeColor=#ffcc66;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="190" width="1100" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="decomp_title" value="Low-Rank Decomposition:" style="text;fontSize=10;fontStyle=1;align=left;spacingLeft=15;" vertex="1" parent="1">
+          <mxGeometry x="70" y="197" width="200" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- Frozen Weight W0 -->
+        <mxCell id="w0_box" value="" style="rounded=1;fillColor=#f0f0f0;strokeColor=#999999;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="120" y="235" width="160" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="w0_label" value="W₀" style="text;fontSize=18;fontStyle=1;fontFamily=Times New Roman;align=center;" vertex="1" parent="1">
+          <mxGeometry x="160" y="255" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="w0_frozen" value="Frozen 🔒" style="text;fontSize=9;fontColor=#c00000;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="140" y="278" width="120" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- Plus Symbol -->
+        <mxCell id="plus" value="+" style="text;fontSize=24;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="260" width="40" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- LoRA Decomposition -->
+        <mxCell id="lora_decomp_box" value="" style="rounded=1;fillColor=#e6f7ff;strokeColor=#0099cc;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="360" y="235" width="760" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="delta_label" value="ΔW =" style="text;fontSize=16;fontStyle=1;fontFamily=Times New Roman;align=right;" vertex="1" parent="1">
+          <mxGeometry x="370" y="258" width="60" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Matrix B -->
+        <mxCell id="matrix_b_visual" value="" style="rounded=0;fillColor=#66b3ff;strokeColor=#0066cc;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="450" y="248" width="80" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="b_label" value="B" style="text;fontSize=16;fontStyle=1;fontFamily=Times New Roman;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+          <mxGeometry x="470" y="260" width="40" height="26" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="b_dim_label" value="d × r" style="text;fontSize=9;fontColor=#003366;align=center;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="455" y="276" width="70" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- Multiply Symbol -->
+        <mxCell id="multiply" value="×" style="text;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="550" y="260" width="30" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Matrix A -->
+        <mxCell id="matrix_a_visual" value="" style="rounded=0;fillColor=#66b3ff;strokeColor=#0066cc;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="600" y="248" width="80" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="a_label" value="A" style="text;fontSize=16;fontStyle=1;fontFamily=Times New Roman;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+          <mxGeometry x="620" y="260" width="40" height="26" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="a_dim_label" value="r × k" style="text;fontSize=9;fontColor=#003366;align=center;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="605" y="276" width="70" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- Scaling Factor -->
+        <mxCell id="scaling" value="× (α/r)" style="text;fontSize=16;fontStyle=1;fontFamily=Times New Roman;fontColor=#ff8800;align=center;" vertex="1" parent="1">
+          <mxGeometry x="700" y="260" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Parameter Values -->
+        <mxCell id="params_box" value="" style="rounded=1;fillColor=#fff0e6;strokeColor=#ff9933;strokeWidth=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="248" width="290" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="param_rank" value="r = 32" style="text;fontSize=10;fontStyle=1;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="820" y="255" width="80" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="param_alpha" value="α = 64" style="text;fontSize=10;fontStyle=1;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="920" y="255" width="80" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="param_dropout" value="dropout = 0.1" style="text;fontSize=10;fontStyle=1;align=left;spacingLeft=10;fontColor=#ff6600;" vertex="1" parent="1">
+          <mxGeometry x="820" y="274" width="120" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="param_scaling" value="α/r = 2.0" style="text;fontSize=10;fontStyle=1;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="970" y="274" width="100" height="18" as="geometry" />
+        </mxCell>
+        
+        <!-- Initialization Note -->
+        <mxCell id="init_note_box" value="" style="rounded=1;fillColor=#ffe6e6;strokeColor=#ff6666;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="355" width="860" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="init_note_title" value="Initialization:" style="text;fontSize=10;fontStyle=1;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="310" y="362" width="100" height="16" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="init_b_val" value="B ~ 𝒩(0, σ²)" style="text;fontSize=10;fontFamily=Times New Roman;align=left;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry x="320" y="383" width="180" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="init_a_val" value="A = 0" style="text;fontSize=10;fontFamily=Times New Roman;align=left;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry x="520" y="383" width="100" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="init_result" value="⇒  ΔW = 0  at t=0" style="text;fontSize=10;fontStyle=1;fontFamily=Times New Roman;fontColor=#c00000;align=left;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry x="640" y="383" width="200" height="18" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="init_purpose" value="(Preserve pre-trained weights)" style="text;fontSize=9;fontStyle=2;fontColor=#666666;align=left;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry x="860" y="383" width="280" height="18" as="geometry" />
+        </mxCell>
+        
+        
+        <!-- ==================== PART (b): Architecture ==================== -->
+        <mxCell id="part_b_title" value="(b) Architecture Integration" style="text;fontSize=11;fontStyle=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="445" width="250" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Input -->
+        <mxCell id="input" value="Medical&#xa;Image" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="490" width="85" height="42" as="geometry" />
+        </mxCell>
+        
+        <!-- Vision Encoder -->
+        <mxCell id="vision_box" value="" style="rounded=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="190" y="475" width="140" height="165" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="vision_label" value="Vision Encoder" style="text;fontSize=10;fontStyle=1;fontColor=#666666;align=center;" vertex="1" parent="1">
+          <mxGeometry x="200" y="483" width="120" height="16" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="vit" value="ViT" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="205" y="508" width="110" height="28" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="patch" value="Patch Embed" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="205" y="544" width="110" height="28" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tokens" value="Visual Tokens" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="205" y="580" width="110" height="28" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="frozen_mark" value="🔒" style="text;fontSize=12;fontColor=#c00000;align=center;" vertex="1" parent="1">
+          <mxGeometry x="230" y="618" width="60" height="16" as="geometry" />
+        </mxCell>
+        
+        <!-- LLM Backbone -->
+        <mxCell id="llm_box" value="" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="380" y="475" width="770" height="165" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="llm_label" value="LLM Backbone (Qwen2.5-VL)" style="text;fontSize=10;fontStyle=1;fontColor=#d79b00;align=center;" vertex="1" parent="1">
+          <mxGeometry x="590" y="483" width="350" height="16" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="transformer" value="Transformer Layer (×N)" style="rounded=1;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=9;fontStyle=1;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="400" y="508" width="730" height="22" as="geometry" />
+        </mxCell>
+        
+        <!-- Attention Block -->
+        <mxCell id="attn_box" value="" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="545" width="340" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="attn_label" value="Multi-Head Attention" style="text;fontSize=9;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="480" y="551" width="180" height="14" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="q" value="Q+LoRA" style="rounded=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=8;fontStyle=1;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="415" y="572" width="68" height="24" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="k" value="K+LoRA" style="rounded=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=8;fontStyle=1;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="495" y="572" width="68" height="24" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="v" value="V+LoRA" style="rounded=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=8;fontStyle=1;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="575" y="572" width="68" height="24" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="o" value="O+LoRA" style="rounded=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=8;fontStyle=1;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="657" y="572" width="68" height="24" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="attn_params" value="r=32, α=64" style="text;fontSize=7;fontColor=#666666;align=center;" vertex="1" parent="1">
+          <mxGeometry x="415" y="604" width="310" height="12" as="geometry" />
+        </mxCell>
+        
+        <!-- FFN Block -->
+        <mxCell id="ffn_box" value="" style="rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="770" y="545" width="340" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ffn_label" value="Feed-Forward Network" style="text;fontSize=9;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="840" y="551" width="180" height="14" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="gate" value="Gate+LoRA" style="rounded=1;fillColor=#fad7ac;strokeColor=#b46504;fontSize=8;fontStyle=1;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="785" y="572" width="78" height="24" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="up" value="Up+LoRA" style="rounded=1;fillColor=#fad7ac;strokeColor=#b46504;fontSize=8;fontStyle=1;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="878" y="572" width="72" height="24" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="down" value="Down+LoRA" style="rounded=1;fillColor=#fad7ac;strokeColor=#b46504;fontSize=8;fontStyle=1;strokeWidth=1.5" vertex="1" parent="1">
+          <mxGeometry x="965" y="572" width="88" height="24" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ffn_params" value="r=32, α=64" style="text;fontSize=7;fontColor=#666666;align=center;" vertex="1" parent="1">
+          <mxGeometry x="785" y="604" width="268" height="12" as="geometry" />
+        </mxCell>
+        
+        <!-- Output -->
+        <mxCell id="output" value="Medical&#xa;Report" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="720" y="658" width="85" height="38" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrows -->
+        <mxCell id="arrow1" edge="1" parent="1" source="input" target="vit" style="strokeWidth=2;strokeColor=#666666;endArrow=classic;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow2" edge="1" parent="1" source="tokens" target="transformer" style="strokeWidth=2;strokeColor=#666666;endArrow=classic;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow3" edge="1" parent="1" source="llm_box" target="output" style="strokeWidth=2;strokeColor=#666666;endArrow=classic;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Target Modules Note -->
+        <mxCell id="targets_note" value="Target Modules: q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj" style="text;fontSize=8;fontStyle=1;fontColor=#666666;align=center;" vertex="1" parent="1">
+          <mxGeometry x="380" y="665" width="600" height="14" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

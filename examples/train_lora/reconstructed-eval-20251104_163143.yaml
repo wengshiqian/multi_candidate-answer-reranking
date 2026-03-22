@@ -1,0 +1,62 @@
+### model
+model_name_or_path: 'D:/my_huggingface_cache/hub/models--Qwen--Qwen2.5-VL-7B-Instruct/snapshots/cc594898137f460bfe9f0759e9844b3ce807cfb5'
+cache_dir: 'D:/my_huggingface_cache'
+trust_remote_code: true
+# 下行路径来自你当前 eval 文件；如果当时没加载适配器，请改为 null
+adapter_name_or_path: 'd:/weng/llama-factory/saves/qwen2_5vl-7b/lora/sft-radborges-cww-1/checkpoint-1497'
+
+### method
+stage: sft
+finetuning_type: lora
+do_train: false
+do_eval: false
+do_predict: true
+
+### dataset
+# 这部分在本次日志未记录，我按你当前 eval 文件补齐；若当时不同请改为实际值
+dataset: PubMedVision_CLEANED
+eval_dataset: PubMedVision_VALIDATION
+dataset_dir: 'd:/weng/llama-factory/data'
+template: qwen2_vl
+cutoff_len: 4096
+packing: false
+overwrite_cache: true
+
+### output & logging
+output_dir: 'd:/weng/llama-factory/saves/qwen2_5vl-7b/lora/sft/eval'
+report_to: none
+# 日志文件未显示 use_swanlab 字段，本次运行依然被 SwanLab 记录；如需强制开启可设 true
+# use_swanlab: true
+# swanlab_run_name: <可选自定义>
+
+### runtime
+bf16: true
+remove_unused_columns: false
+ddp_timeout: 180000000
+
+### evaluation & prediction
+predict_with_generate: true
+per_device_eval_batch_size: 1
+logging_steps: 10
+load_best_model_at_end: false
+greater_is_better: false
+label_smoothing_factor: 0.0
+
+### generation (按日志默认推断)
+do_sample: false
+num_beams: 1
+length_penalty: 1.0
+no_repeat_ngram_size: 0
+repetition_penalty: 1.0
+
+### train section (虽然 do_train=false，但保留日志中的优化器与超参以便复现环境)
+per_device_train_batch_size: 8
+num_train_epochs: 3.0
+learning_rate: 5.0e-5
+lr_scheduler_type: linear
+warmup_ratio: 0.0
+max_grad_norm: 1.0
+weight_decay: 0.0
+save_strategy: steps
+save_steps: 500
+overwrite_output_dir: false

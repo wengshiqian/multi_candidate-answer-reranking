@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5dbcf239-f189-48ab-be64-ac661bf2fa47" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/../llava_mistral_config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../llava_offline_lora_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/dataset_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/../data/dataset_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examples/inference/llama3_lora_sft.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../examples/inference/llama3_lora_sft.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examples/merge_lora/llama3_lora_sft.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../examples/merge_lora/llama3_lora_sft.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examples/train_lora/llama3_lora_sft.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../examples/train_lora/llama3_lora_sft.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examples/train_lora/qwen2_5vl_lora_sft.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../examples/train_lora/qwen2_5vl_lora_sft.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/llamafactory/model/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/../src/llamafactory/model/loader.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="34GesxNGaKlwqdjBxZmb9NzMZUf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-dfff61a61320-9cdd278e9d02-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.25410.159" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="5dbcf239-f189-48ab-be64-ac661bf2fa47" name="更改" comment="" />
+      <created>1760844545697</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760844545697</updated>
+    </task>
+    <servers />
+  </component>
+</project>

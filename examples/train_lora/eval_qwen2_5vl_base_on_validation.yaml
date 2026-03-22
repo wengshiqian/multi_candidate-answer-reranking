@@ -1,0 +1,58 @@
+### model
+# 使用你本地缓存好的 Qwen2.5-VL-7B-Instruct 基座模型
+model_name_or_path: 'D:/my_huggingface_cache/hub/models--Qwen--Qwen2.5-VL-7B-Instruct/snapshots/cc594898137f460bfe9f0759e9844b3ce807cfb5'
+cache_dir: 'D:/my_huggingface_cache'
+trust_remote_code: true
+image_max_pixels: 1048576
+video_max_pixels: 16384
+
+# 不加载任何 LoRA 适配器，只用基座模型做预测
+adapter_name_or_path: null
+
+### method
+stage: sft
+do_train: false        # 不训练
+do_eval: false         # 跑 evaluation（方便看 loss 等）
+do_predict: true      # 关键：生成 predictions.jsonl
+finetuning_type: lora # 虽然不训练，但保持和其他配置一致即可
+
+### dataset
+# 只用验证集，不再混入训练集
+eval_dataset: PubMedVision_VALIDATION
+dataset_dir: 'd:/llama-factory/data'
+template: qwen2_vl
+cutoff_len: 16384
+packing: false
+overwrite_cache: true
+val_size: 0           # 不再切分验证集
+
+### output & logging
+output_dir: 'd:/llama-factory/saves/Qwen2.5-VL-7B-Instruct/base/eval_on_validation'
+report_to: none
+use_swanlab: false
+swanlab_run_name: null
+
+### runtime
+bf16: true
+remove_unused_columns: false
+ddp_timeout: 180000000
+
+# 评估指标：只做生成评估，不算 token-level accuracy
+compute_accuracy: false
+
+# 评估 / 日志 / 预测
+predict_with_generate: true
+per_device_eval_batch_size: 1
+logging_steps: 10
+load_best_model_at_end: false
+greater_is_better: false
+label_smoothing_factor: 0.0
+
+# 生成相关参数（可以按需微调）
+do_sample: false
+num_beams: 4
+length_penalty: 1.1
+max_new_tokens: 512
+no_repeat_ngram_size: 6
+repetition_penalty: 1.8
+skip_special_tokens: true

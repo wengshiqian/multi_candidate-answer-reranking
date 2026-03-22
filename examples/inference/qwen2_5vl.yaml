@@ -1,0 +1,8 @@
+#model_name_or_path: Qwen/Qwen2.5-VL-7B-Instruct
+model_name_or_path: 'D:\my_huggingface_cache\hub\models--Qwen--Qwen2.5-VL-7B-Instruct\snapshots\cc594898137f460bfe9f0759e9844b3ce807cfb5'
+template: qwen2_vl
+infer_backend: huggingface  # choices: [huggingface, vllm, sglang]
+trust_remote_code: true
+#adapter_name_or_path: saves/qwen2_5vl-7b/lora/sft
+adapter_name_or_path: 'D:\weng\llama-factory\saves\Qwen2.5-VL-7B-Instruct\lora\exp_dropout_10_full'
+infer_dtype: float16

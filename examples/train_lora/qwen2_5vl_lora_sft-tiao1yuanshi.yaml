@@ -1,0 +1,84 @@
+### model
+#model_name_or_path: Qwen/Qwen2.5-VL-7B-Instruct
+model_name_or_path: 'D:/my_huggingface_cache/hub/models--Qwen--Qwen2.5-VL-7B-Instruct/snapshots/cc594898137f460bfe9f0759e9844b3ce807cfb5'
+cache_dir: 'D:/my_huggingface_cache'
+image_max_pixels: 262144
+video_max_pixels: 16384
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+do_eval: true
+do_predict: false
+finetuning_type: lora
+lora_rank: 64
+lora_alpha: 128
+lora_dropout: 0.1
+# 冻结策略：保留视觉塔冻结，只解冻 projector
+freeze_vision_tower: true
+freeze_multi_modal_projector: false
+freeze_language_model: false
+
+# LoRA 目标，可用 all 让系统自动筛选语言模型中的线性层
+lora_target: all
+
+# 额外参与训练且保存的非 LoRA 模块（Qwen2.5-VL projector 的叶子名）
+additional_target: visual.merger
+## === 使用你的优化器 ===
+use_radam_borges: true
+borges_smoothing: 0.85
+borges_min_gradient_scale: 0.6
+borges_max_gradient_scale: 1.2
+
+dataset: PubMedVision_CLEANED
+template: qwen2_vl
+# 关键修复：避免截断图像占位符
+cutoff_len: 4096
+#max_samples: 5000
+overwrite_cache: true
+dataloader_num_workers: 0
+packing: false
+# 显式指定数据目录（可选，但推荐）
+dataset_dir: 'd:/weng/llama-factory/data'
+# 显式指定验证集
+eval_dataset: PubMedVision_VALIDATION
+### output
+output_dir: saves/qwen2_5vl-7b/lora/sft_111
+preprocessing_num_workers: 1
+plot_loss: true
+overwrite_output_dir: false
+save_only_model: false
+report_to: swanlab
+use_swanlab: true
+swanlab_run_name: quanbu qwen2_5vl_lora_sft_RAdamBorges_lr2e-4_s08_ms05_20
+### 
+#adapter_name_or_path: 'saves/qwen2_5vl-7b/lora/sft/checkpoint-1996'
+### 
+### train
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 32
+learning_rate: 7.5e-5
+warmup_ratio: 0.05
+max_grad_norm: 1.0
+#resume_from_checkpoint: null        # 自动续训（保持 output_dir 不变）
+#resume_from_checkpoint: 'saves/qwen2_5vl-7b/lora/sft/checkpoint-1996'
+num_train_epochs: 8
+lr_scheduler_type: cosine
+bf16: true
+dataloader_drop_last: true
+remove_unused_columns: false
+ddp_timeout: 180000000
+eval_strategy: "epoch"
+save_strategy: "epoch"
+#save_total_limit: 5
+load_best_model_at_end: true
+metric_for_best_model: eval_loss
+greater_is_better: false
+predict_with_generate: false 
+per_device_eval_batch_size: 2
+compute_accuracy: false
+
+logging_steps: 10
+# label_smoothing_factor: 0.05
+label_smoothing_factor: 0.00

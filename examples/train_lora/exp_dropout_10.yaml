@@ -1,0 +1,84 @@
+### model
+model_name_or_path: 'D:/my_huggingface_cache/hub/models--Qwen--Qwen2.5-VL-7B-Instruct/snapshots/cc594898137f460bfe9f0759e9844b3ce807cfb5'
+cache_dir: 'D:/my_huggingface_cache'
+trust_remote_code: true
+image_max_pixels: 147456
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+
+# LoRA配置 - dropout提升到0.1（更强正则化）
+lora_rank: 32
+lora_alpha: 64
+lora_dropout: 0.1
+lora_target:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+
+### dataset
+dataset: PubMedVision_CLEANED
+template: qwen2_vl
+cutoff_len: 4096
+max_samples: null
+preprocessing_num_workers: 8
+dataloader_num_workers: 0
+
+### output
+output_dir: saves/Qwen2.5-VL-7B-Instruct/lora/exp_dropout_10_full
+logging_steps: 100
+save_steps: 2000
+save_total_limit: 4
+plot_loss: true
+overwrite_output_dir: true
+
+report_to: swanlab
+use_swanlab: true
+swanlab_run_name: 'exp_dropout_10_lr1e-4'
+
+### optim
+optim: adamw_bnb_8bit
+learning_rate: 1e-4
+lr_scheduler_type: cosine
+use_radam_borges: true
+borges_smoothing: 1.0
+borges_min_gradient_scale: 0.3
+borges_max_gradient_scale: 2.5
+warmup_ratio: 0.1
+weight_decay: 0.0
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16
+num_train_epochs: 3.0
+bf16: true
+gradient_checkpointing: true
+max_grad_norm: 1.0
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+#do_eval: true
+#val_size: 0.1
+#per_device_eval_batch_size: 1
+#eval_strategy: steps
+#eval_steps: 500
+#predict_with_generate: false
+#do_predict: false
+#do_sample: false
+#top_p: 0.9
+#temperature: 0.95
+do_eval: false
+val_size: 0
+per_device_eval_batch_size: 1
+eval_strategy: "no"
+# eval_steps: 500
+predict_with_generate: false
+do_predict: false
+do_sample: false
+top_p: 0.9
+temperature: 0.95

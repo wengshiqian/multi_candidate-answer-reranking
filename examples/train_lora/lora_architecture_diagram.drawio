@@ -1,0 +1,136 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.2.7">
+  <diagram name="LoRA Architecture" id="lora-arch">
+    <mxGraphModel dx="390" dy="218" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" value="LoRA Fine-tuning Architecture for Qwen2.5-VL on Medical Images" vertex="1">
+          <mxGeometry height="30" width="600" x="284.5" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1" value="Medical Image&#xa;(X-ray/MRI/CT)" vertex="1">
+          <mxGeometry height="60" width="140" x="90" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="vision_encoder_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;dashPattern=3 3;" value="" vertex="1">
+          <mxGeometry height="300" width="200" x="280" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="vision_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#666666;" value="Vision Encoder (Frozen)" vertex="1">
+          <mxGeometry height="25" width="160" x="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11" value="Vision Transformer&#xa;(ViT)" vertex="1">
+          <mxGeometry height="50" width="140" x="310" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="patch_embed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11" value="Patch Embedding" vertex="1">
+          <mxGeometry height="40" width="140" x="310" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="vision_tokens" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11" value="Visual Tokens" vertex="1">
+          <mxGeometry height="40" width="140" x="310" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="frozen_icon" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#d6343b;fontStyle=1" value="🔒 Parameters Frozen" vertex="1">
+          <mxGeometry height="30" width="160" x="300" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" edge="1" parent="1" source="input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" target="vit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="llm_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;dashPattern=3 3;" value="" vertex="1">
+          <mxGeometry height="300" width="560" x="540" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="llm_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#d79b00;" value="LLM Backbone (Qwen2.5-VL) with LoRA Adapters" vertex="1">
+          <mxGeometry height="25" width="360" x="640" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="transformer_layer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1" value="Transformer Layer (×N)" vertex="1">
+          <mxGeometry height="40" width="500" x="570" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="attention_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="150" width="230" x="570" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="attention_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" value="Multi-Head Attention" vertex="1">
+          <mxGeometry height="20" width="180" x="595" y="182" as="geometry" />
+        </mxCell>
+        <mxCell id="q_proj" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=10;fontStyle=1" value="Q_proj + LoRA&#xa;(rank=32, α=64)" vertex="1">
+          <mxGeometry height="35" width="100" x="580" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="k_proj" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=10;fontStyle=1" value="K_proj + LoRA&#xa;(rank=32, α=64)" vertex="1">
+          <mxGeometry height="35" width="100" x="690" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="v_proj" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=10;fontStyle=1" value="V_proj + LoRA&#xa;(rank=32, α=64)" vertex="1">
+          <mxGeometry height="35" width="100" x="580" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="o_proj" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=10;fontStyle=1" value="O_proj + LoRA&#xa;(rank=32, α=64)" vertex="1">
+          <mxGeometry height="35" width="100" x="690" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="ffn_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="" vertex="1">
+          <mxGeometry height="150" width="250" x="820" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="ffn_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" value="Feed-Forward Network (FFN)" vertex="1">
+          <mxGeometry height="20" width="200" x="845" y="182" as="geometry" />
+        </mxCell>
+        <mxCell id="gate_proj" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;fontSize=10;fontStyle=1" value="Gate_proj + LoRA&#xa;(rank=32, α=64)" vertex="1">
+          <mxGeometry height="35" width="100" x="835" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="up_proj" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;fontSize=10;fontStyle=1" value="Up_proj + LoRA&#xa;(rank=32, α=64)" vertex="1">
+          <mxGeometry height="35" width="100" x="955" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="down_proj" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;fontSize=10;fontStyle=1" value="Down_proj + LoRA&#xa;(rank=32, α=64)" vertex="1">
+          <mxGeometry height="35" width="110" x="895" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2" edge="1" parent="1" source="vision_tokens" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" target="transformer_layer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="output" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" value="Medical Report&#xa;(Generated Text)" vertex="1">
+          <mxGeometry height="60" width="140" x="740" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;" target="output">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="160.5" as="sourcePoint" />
+            <mxPoint x="810" y="384.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="config_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;dashed=1;dashPattern=5 5;" value="" vertex="1">
+          <mxGeometry height="160" width="1020" x="80" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="config_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#b85450;" value="Optimal LoRA Configuration (exp_dropout_10)" vertex="1">
+          <mxGeometry height="25" width="370" x="400" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="param1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="LoRA Rank: 32" vertex="1">
+          <mxGeometry height="30" width="180" x="100" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="param2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="LoRA Alpha: 64" vertex="1">
+          <mxGeometry height="30" width="180" x="300" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="param3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="LoRA Dropout: 0.1" vertex="1">
+          <mxGeometry height="30" width="180" x="500" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="param4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="Learning Rate: 1e-4" vertex="1">
+          <mxGeometry height="30" width="180" x="700" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="param5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="Optimizer: AdamW (8-bit)" vertex="1">
+          <mxGeometry height="30" width="180" x="900" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="param6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="Scheduler: Cosine" vertex="1">
+          <mxGeometry height="30" width="180" x="100" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="param7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="Warmup Ratio: 0.1" vertex="1">
+          <mxGeometry height="30" width="180" x="300" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="param8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="Batch Size: 1 × 16 (grad_accum)" vertex="1">
+          <mxGeometry height="30" width="240" x="500" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="param9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="Epochs: 3.0" vertex="1">
+          <mxGeometry height="30" width="120" x="760" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="param10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;" value="Precision: BF16" vertex="1">
+          <mxGeometry height="30" width="180" x="900" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;spacingLeft=10;" value="LoRA Target Modules:" vertex="1">
+          <mxGeometry height="20" width="150" x="100" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;spacingLeft=10;fontColor=#666666;" value="Attention: q_proj, k_proj, v_proj, o_proj  |  FFN: gate_proj, up_proj, down_proj" vertex="1">
+          <mxGeometry height="20" width="550" x="250" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#666666;" value="Note: All-Linear Coverage Strategy ensures comprehensive adaptation for medical vision-language alignment" vertex="1">
+          <mxGeometry height="30" width="600" x="284.5" y="680" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
